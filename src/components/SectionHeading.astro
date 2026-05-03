@@ -1,15 +1,21 @@
 ---
 interface Props {
-  label?: string;
+  mono?: string;
   title: string;
   subtitle?: string;
 }
 
-const { label, title, subtitle } = Astro.props;
+const { mono, title, subtitle } = Astro.props;
 ---
 
-<div class="mb-14">
-  {label && <p class="section-label">{label}</p>}
-  <h2 class="section-title">{title}</h2>
-  {subtitle && <p class="section-subtitle">{subtitle}</p>}
+<div class="mb-12 text-center">
+  {mono && <p class="mono-label mb-3">{mono}</p>}
+  <h2 class="text-2xl md:text-3xl font-normal text-[var(--text)] mb-3 tracking-[-0.015em]">
+    {title}
+  </h2>
+  {subtitle && (
+    <p class="text-[15px] text-[var(--muted)] max-w-lg mx-auto leading-relaxed">
+      {subtitle}
+    </p>
+  )}
 </div>

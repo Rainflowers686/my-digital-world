@@ -1,21 +1,20 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import GlassCard from './GlassCard.astro';
 
 const projects = [
   {
     title: '个人网站',
-    description: '基于 Astro 6 + Tailwind CSS v4 构建的个人数字空间，采用液态玻璃设计语言。',
-    tags: ['Astro', 'TypeScript', 'Tailwind CSS'],
+    description: '基于 Astro 6 与 Tailwind CSS 构建的个人数字空间，注重排版与阅读体验。',
+    tags: ['Astro', 'TypeScript', 'Tailwind'],
   },
   {
     title: 'AI 学习助手',
-    description: '接入大语言模型 API 的智能学习工具，支持对话问答与知识库检索。',
+    description: '接入大语言模型 API 的智能学习工具，支持对话问答与知识检索。',
     tags: ['Python', 'LangChain', 'FastAPI'],
   },
   {
     title: '组件库设计',
-    description: '面向现代 Web 应用的 UI 组件库系统，注重无障碍访问与主题定制。',
+    description: '面向现代 Web 应用的 UI 组件系统，注重无障碍访问与主题定制。',
     tags: ['React', 'Storybook', 'Radix UI'],
   },
 ];
@@ -23,15 +22,17 @@ const projects = [
 
 <section id="projects" class="section-shell">
   <SectionHeading
-    label="精选作品"
-    title="Projects"
-    subtitle="近期完成的一些项目，体现技术深度与设计思考。"
+    mono="Selected Work"
+    title="精选项目"
+    subtitle="近期完成的一些作品，体现技术深度与设计思考。"
   />
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
     {projects.map((project) => (
-      <GlassCard class="flex flex-col p-6">
-        <h3 class="text-base font-semibold text-white mb-2">{project.title}</h3>
+      <div class="soft-card p-6 flex flex-col">
+        <h3 class="text-base font-medium text-[var(--text)] mb-2 font-serif">
+          {project.title}
+        </h3>
         <p class="text-sm text-[var(--muted)] leading-relaxed mb-5 flex-1">
           {project.description}
         </p>
@@ -40,7 +41,7 @@ const projects = [
             <span class="tag-pill">{tag}</span>
           ))}
         </div>
-      </GlassCard>
+      </div>
     ))}
   </div>
 </section>

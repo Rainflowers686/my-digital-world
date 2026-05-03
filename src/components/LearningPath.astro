@@ -2,58 +2,52 @@
 import SectionHeading from './SectionHeading.astro';
 
 const steps = [
-  {
-    title: '前端基础',
-    description: 'HTML、CSS、JavaScript 核心能力，语义化与响应式设计',
-    done: true,
-  },
-  {
-    title: 'React 生态',
-    description: '组件化思维、状态管理、Next.js 服务端渲染',
-    done: false,
-  },
-  {
-    title: '全栈开发',
-    description: 'Node.js、数据库设计、API 开发与系统架构',
-    done: false,
-  },
-  {
-    title: '工程化实践',
-    description: 'CI/CD、Docker、性能优化与可观测性',
-    done: false,
-  },
+  { title: '前端基础', description: 'HTML、CSS、JavaScript 核心能力，语义化与响应式设计。', done: true },
+  { title: 'React 生态', description: '组件化思维、状态管理与 Next.js 服务端渲染。', done: false },
+  { title: '全栈开发', description: 'Node.js、数据库设计、API 开发与系统架构。', done: false },
+  { title: '工程化实践', description: 'CI/CD、Docker、性能优化与可观测性。', done: false },
 ];
 ---
 
-<section id="learning" class="section-shell border-t border-[var(--glass-border)]">
+<section id="learning" class="section-shell border-t border-[var(--border)]">
   <SectionHeading
-    label="成长路径"
-    title="Learning"
-    subtitle="从基础到工程化的系统学习路线。"
+    mono="Growth Path"
+    title="学习路线"
+    subtitle="从基础到工程化的系统学习路径。"
   />
 
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-6">
     {steps.map((step, i) => (
       <div class="relative">
-        {/* 连接线 */}
+        {/* 连接线 - desktop only */}
         {i < steps.length - 1 && (
-          <div class="hidden md:block absolute top-5 left-[calc(100%+0.25rem)] w-[calc(1.25rem-2px)] h-px bg-[var(--glass-border)]" />
+          <div class="hidden md:block absolute top-4 left-[calc(100%+0.25rem)] w-[calc(1.5rem-2px)] h-px bg-[var(--border)]" />
         )}
 
-        <div class="flex items-center gap-3 mb-3">
+        <div class="flex md:flex-col items-start gap-3 md:gap-3">
           <div
             class:list={[
-              'flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold flex-shrink-0',
+              'flex items-center justify-center w-4 h-4 md:w-7 md:h-7 rounded-full flex-shrink-0 text-[10px] md:text-xs font-medium',
               step.done
-                ? 'bg-[var(--primary)] text-white'
-                : 'bg-white/5 text-[var(--muted)] border border-[var(--glass-border)]',
+                ? 'bg-[var(--accent)] text-white'
+                : 'bg-[var(--accent-soft)] text-[var(--accent)]',
             ]}
           >
             {step.done ? '✓' : i + 1}
           </div>
-          <h3 class="text-sm font-semibold text-white">{step.title}</h3>
+          <div>
+            <h3 class="text-sm font-medium text-[var(--text)] mb-1 font-serif">
+              {step.title}
+            </h3>
+            <p class="text-[13px] text-[var(--muted)] leading-relaxed hidden md:block">
+              {step.description}
+            </p>
+          </div>
         </div>
-        <p class="text-[13px] text-[var(--muted)] leading-relaxed pl-8">{step.description}</p>
+        {/* mobile description */}
+        <p class="text-[13px] text-[var(--muted)] leading-relaxed md:hidden mt-2 ml-7">
+          {step.description}
+        </p>
       </div>
     ))}
   </div>

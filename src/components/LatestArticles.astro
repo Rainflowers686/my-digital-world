@@ -20,36 +20,38 @@ const articles = [
 ];
 ---
 
-<section id="articles" class="section-shell border-t border-[var(--glass-border)]">
+<section id="articles" class="section-shell border-t border-[var(--border)]">
   <SectionHeading
-    label="写作"
-    title="Articles"
+    mono="Writing"
+    title="最新文章"
     subtitle="记录学习过程中的思考与发现。"
   />
 
-  <div class="flex flex-col gap-3">
+  <div class="divide-y divide-[var(--border)]">
     {articles.map((article) => (
       <a
         href="#"
-        class="group flex items-center justify-between gap-6 p-5 rounded-xl border border-transparent hover:bg-white/[0.03] hover:border-[var(--glass-border)] transition-all duration-300"
+        class="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-5 first:pt-0 last:pb-0 px-3 -mx-3 rounded-lg hover:bg-[var(--surface)] transition-colors duration-200"
       >
         <div class="min-w-0">
-          <h3 class="text-[15px] font-medium text-white mb-1 group-hover:text-[var(--primary-soft)] transition-colors duration-200">
+          <h3 class="text-[15px] font-medium text-[var(--text)] mb-0.5 group-hover:text-[var(--accent)] transition-colors duration-200 font-serif">
             {article.title}
           </h3>
           <p class="text-[13px] text-[var(--muted)] leading-relaxed">
             {article.description}
           </p>
         </div>
-        <span class="text-[13px] text-[var(--muted)] flex-shrink-0">{article.date}</span>
+        <span class="text-[13px] text-[var(--muted)] flex-shrink-0 font-mono">
+          {article.date}
+        </span>
       </a>
     ))}
   </div>
 
   <div class="mt-8">
-    <a href="#" class="text-[13px] text-[var(--muted)] hover:text-white transition-colors duration-200 inline-flex items-center gap-1.5">
+    <a href="#" class="quiet-btn">
       全部文章
-      <span class="text-xs">→</span>
+      <span class="text-[11px] font-mono">→</span>
     </a>
   </div>
 </section>

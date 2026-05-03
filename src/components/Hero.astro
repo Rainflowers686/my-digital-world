@@ -1,61 +1,32 @@
-<section id="hero" class="relative min-h-screen flex items-center px-6 pt-14">
-  <div class="section-shell !py-0 w-full">
-    <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
+<section id="hero" class="relative min-h-[85vh] flex items-center justify-center px-6 pt-12">
+  <div class="w-full max-w-3xl mx-auto text-center">
 
-      <!-- 左侧：标题 + 介绍 + CTA -->
-      <div class="flex-1 pt-8 lg:pt-0">
-        <p class="section-label">Hi, I'm</p>
-        <h1 class="text-5xl md:text-7xl font-bold tracking-[-0.03em] leading-[1.05] text-white mb-6 max-w-xl">
-          构建<span class="text-[var(--primary-soft)]">数字</span>世界
-        </h1>
-        <p class="text-[var(--muted)] text-lg leading-relaxed max-w-lg mb-10">
-          计算机科学专业在读，专注于现代 Web 开发与软件工程实践。用代码将想法转化为体验。
+    <!-- 小标签 -->
+    <p class="mono-label mb-8 tracking-[0.08em]">Personal Digital Garden</p>
+
+    <!-- 大标题 -->
+    <h1 class="text-4xl md:text-6xl font-normal tracking-[-0.02em] text-[var(--text)] leading-[1.12] mb-6">
+      Build, Learn, Create<span class="text-[var(--accent)]">.</span>
+    </h1>
+
+    <!-- 副标题 -->
+    <p class="text-base md:text-lg text-[var(--muted)] max-w-xl mx-auto leading-relaxed mb-12">
+      一个记录计算机学习、项目作品与长期成长的个人数字世界。
+    </p>
+
+    <!-- 入口卡片 - 类似 Claude 输入框 -->
+    <div class="soft-card max-w-lg mx-auto p-[2px]">
+      <div class="bg-[var(--surface-elevated)] rounded-[0.75rem] p-6">
+        <p class="text-sm text-[var(--muted)] mb-4 font-serif italic">
+          今天想探索什么？
         </p>
-
-        <div class="flex items-center gap-3">
-          <a href="#projects" class="glow-btn">查看项目</a>
-          <a href="#learning" class="ghost-btn">学习路线</a>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <a href="#projects" class="quiet-btn">项目</a>
+          <a href="#learning" class="quiet-btn">学习路线</a>
+          <a href="#articles" class="quiet-btn">最新文章</a>
         </div>
       </div>
-
-      <!-- 右侧：玻璃信息面板 -->
-      <div class="w-full lg:w-[340px] flex-shrink-0">
-        <div class="glass-panel p-6 space-y-5">
-          <div>
-            <p class="text-xs text-[var(--muted)] uppercase tracking-wider mb-3">当前状态</p>
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <span class="status-dot active" />
-                <span class="text-sm text-white">Computer Science Student</span>
-              </div>
-              <p class="text-sm text-[var(--muted)] leading-relaxed">
-                正在构建个人数字世界，专注于前端工程与产品设计。
-              </p>
-            </div>
-          </div>
-
-          <hr class="hr-fade" />
-
-          <div>
-            <p class="text-xs text-[var(--muted)] uppercase tracking-wider mb-3">技术栈</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="tag-pill">Astro</span>
-              <span class="tag-pill">TypeScript</span>
-              <span class="tag-pill">React</span>
-              <span class="tag-pill">Tailwind CSS</span>
-              <span class="tag-pill">MDX</span>
-            </div>
-          </div>
-
-          <hr class="hr-fade" />
-
-          <div>
-            <p class="text-xs text-[var(--muted)] uppercase tracking-wider mb-3">构建版本</p>
-            <p class="text-sm text-white font-mono">V0.2 <span class="text-[var(--muted)]">· 视觉重构中</span></p>
-          </div>
-        </div>
-      </div>
-
     </div>
+
   </div>
 </section>
