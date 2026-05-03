@@ -12,7 +12,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-[rgba(255,252,245,0.82)] backdrop-blur-md border-b border-[rgba(31,27,22,0.08)]">
+    <nav className="fixed top-0 left-0 right-0 z-40 nav-shell">
       <div className="mx-auto max-w-6xl px-6 h-11 flex items-center justify-between">
         <a href="/" className="text-sm font-semibold text-[var(--text)] tracking-tight">
           Rain's Digital World

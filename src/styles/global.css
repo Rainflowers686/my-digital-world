@@ -1,18 +1,31 @@
 @import "tailwindcss";
 
-/* ── Design Tokens ── */
+/* ── Design Tokens (Warm defaults, overridden by AppearancePanel) ── */
 :root {
   --bg: #f7f3ea;
-  --surface: rgba(255, 252, 245, 0.60);
-  --surface-elevated: rgba(255, 252, 245, 0.85);
+  --surface-rgb: 255, 252, 245;
+  --surface-elevated-rgb: 255, 252, 245;
+  --surface: rgb(255, 252, 245 / 0.5);
+  --surface-elevated: rgb(255, 252, 245 / 0.85);
   --text: #1f1b16;
   --muted: #6f675c;
-  --border: rgba(31, 27, 22, 0.10);
+  --border-rgb: 31, 27, 22;
+  --border: rgb(31, 27, 22 / 0.10);
+  --border-hover: rgba(31, 27, 22, 0.14);
   --accent: #c96442;
   --accent-soft: rgba(201, 100, 66, 0.08);
+  --accent-hover: #b8573b;
+  --tag-bg: rgba(31, 27, 22, 0.04);
   --site-bg-image: url('/backgrounds/warm-paper.svg');
+  --nav-bg-rgb: 255, 252, 245;
   --shadow-sm: 0 1px 2px rgba(31, 27, 22, 0.04);
   --shadow-md: 0 4px 16px rgba(31, 27, 22, 0.06);
+
+  /* Glass defaults (Medium) */
+  --glass-blur: 12px;
+  --glass-opacity: 0.68;
+  --glass-border-alpha: 0.08;
+  --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* ── Base ── */
@@ -43,17 +56,19 @@ h1, h2, h3, h4 {
 
 /* ── Soft card ── */
 .soft-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgb(var(--surface-rgb) / var(--glass-opacity));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgb(var(--border-rgb) / var(--glass-border-alpha));
   border-radius: 0.875rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--glass-shadow);
   transform: translateY(0);
   transition: all 0.25s ease;
 }
 
 .soft-card:hover {
-  background: var(--surface-elevated);
-  border-color: rgba(31, 27, 22, 0.14);
+  background: rgb(var(--surface-elevated-rgb) / var(--glass-opacity));
+  border-color: var(--border-hover);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -68,7 +83,7 @@ h1, h2, h3, h4 {
   font-weight: 500;
   color: var(--muted);
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid rgb(var(--border-rgb) / var(--glass-border-alpha));
   border-radius: 0.625rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -76,8 +91,8 @@ h1, h2, h3, h4 {
 
 .quiet-btn:hover {
   color: var(--text);
-  border-color: rgba(31, 27, 22, 0.18);
-  background: var(--surface);
+  border-color: var(--border-hover);
+  background: rgb(var(--surface-rgb) / var(--glass-opacity));
 }
 
 /* ── Primary button ── */
@@ -88,7 +103,7 @@ h1, h2, h3, h4 {
   padding: 0.5rem 1.5rem;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: #fff;
+  color: #ffffff;
   background: var(--accent);
   border: 1px solid transparent;
   border-radius: 0.625rem;
@@ -97,8 +112,8 @@ h1, h2, h3, h4 {
 }
 
 .primary-btn:hover {
-  background: #b8573b;
-  box-shadow: 0 2px 8px rgba(201, 100, 66, 0.2);
+  background: var(--accent-hover);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* ── Monospace label ── */
@@ -122,7 +137,7 @@ h1, h2, h3, h4 {
 .hairline {
   height: 1px;
   border: none;
-  background: var(--border);
+  background: rgb(var(--border-rgb) / var(--glass-border-alpha));
 }
 
 /* ── Tag pill ── */
@@ -132,7 +147,7 @@ h1, h2, h3, h4 {
   font-size: 0.6875rem;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   color: var(--muted);
-  background: rgba(31, 27, 22, 0.04);
+  background: var(--tag-bg);
   border: 1px solid transparent;
   border-radius: 0.375rem;
 }
@@ -203,8 +218,9 @@ h1, h2, h3, h4 {
 }
 
 .prose-custom pre {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgb(var(--surface-rgb) / var(--glass-opacity));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgb(var(--border-rgb) / var(--glass-border-alpha));
   border-radius: 0.75rem;
   padding: 1.25rem;
   margin-bottom: 1.5rem;
@@ -228,7 +244,7 @@ h1, h2, h3, h4 {
 
 .prose-custom hr {
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgb(var(--border-rgb) / var(--glass-border-alpha));
   margin: 2.5rem 0;
 }
 
@@ -242,7 +258,15 @@ h1, h2, h3, h4 {
   text-decoration: none;
 }
 
-/* ── Fade in animation for BackgroundPicker ── */
+/* ── Nav shell (used by Navbar) ── */
+.nav-shell {
+  background: rgb(var(--nav-bg-rgb) / var(--glass-opacity));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid rgb(var(--border-rgb) / var(--glass-border-alpha));
+}
+
+/* ── Fade in animation ── */
 @keyframes fade-in-up {
   from {
     opacity: 0;

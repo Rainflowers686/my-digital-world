@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.tsx';
-import BackgroundPicker from '../components/react/BackgroundPicker.tsx';
+import AppearancePanel from '../components/react/AppearancePanel.tsx';
 
 interface Props {
   title?: string;
@@ -29,6 +29,6 @@ const pageDescription = description ?? '个人数字世界 — 记录计算机�
     <main>
       <slot />
     </main>
-    <BackgroundPicker client:load />
+    <AppearancePanel client:load />
   </body>
 </html>
