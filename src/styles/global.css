@@ -47,13 +47,15 @@ h1, h2, h3, h4 {
   border: 1px solid var(--border);
   border-radius: 0.875rem;
   box-shadow: var(--shadow-sm);
+  transform: translateY(0);
   transition: all 0.25s ease;
 }
 
 .soft-card:hover {
   background: var(--surface-elevated);
-  border-color: rgba(31, 27, 22, 0.15);
+  border-color: rgba(31, 27, 22, 0.14);
   box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 /* ── Quiet button ── */

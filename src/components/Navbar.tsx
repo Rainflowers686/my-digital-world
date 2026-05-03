@@ -11,9 +11,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-[var(--surface-elevated)] border-b border-[var(--border)]">
-      <div className="mx-auto max-w-6xl px-6 h-12 flex items-center justify-between">
-        <a href="#hero" className="text-sm font-medium text-[var(--text)] tracking-tight">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-[rgba(255,252,245,0.82)] backdrop-blur-md border-b border-[rgba(31,27,22,0.08)]">
+      <div className="mx-auto max-w-6xl px-6 h-11 flex items-center justify-between">
+        <a href="#hero" className="text-sm font-semibold text-[var(--text)] tracking-tight">
           Rain's Digital World
         </a>
 
@@ -22,7 +22,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-[13px] text-[var(--muted)] hover:text-[var(--text)] transition-colors duration-200"
+              className="text-[12px] text-[var(--muted)] hover:text-[var(--text)] transition-colors duration-200"
             >
               {link.label}
             </a>

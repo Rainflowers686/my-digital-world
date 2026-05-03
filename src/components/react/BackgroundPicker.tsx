@@ -47,7 +47,7 @@ export default function BackgroundPicker() {
             <button
               key={bg.id}
               onClick={() => select(bg.id)}
-              className={`text-left px-3 py-2 text-[13px] rounded-lg transition-colors duration-150 ${
+              className={`text-left px-3 py-1.5 text-[12px] rounded-lg transition-colors duration-150 ${
                 current === bg.id
                   ? 'bg-[var(--accent-soft)] text-[var(--accent)] font-medium'
                   : 'text-[var(--muted)] hover:text-[var(--text)] hover:bg-[var(--surface)]'
@@ -60,10 +60,10 @@ export default function BackgroundPicker() {
       )}
       <button
         onClick={() => setOpen(!open)}
-        className="w-9 h-9 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] flex items-center justify-center text-sm text-[var(--muted)] hover:text-[var(--text)] hover:border-[rgba(31,27,22,0.18)] transition-all duration-200 shadow-sm"
+        className="w-8 h-8 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--text)] hover:border-[rgba(31,27,22,0.18)] transition-all duration-200 shadow-sm"
         aria-label="Change background"
       >
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
           <rect x="3" y="3" width="18" height="18" rx="3" />
           <circle cx="8.5" cy="8.5" r="1.5" />
           <path d="M21 15l-5-5L5 21" />
