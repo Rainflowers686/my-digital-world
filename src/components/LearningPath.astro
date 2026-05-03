@@ -1,0 +1,86 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import GlassCard from './GlassCard.astro';
+
+const steps = [
+  {
+    title: '前端基础',
+    description: 'HTML、CSS、JavaScript 核心能力，掌握语义化与响应式设计',
+    status: 'completed',
+  },
+  {
+    title: 'React 生态',
+    description: '组件化思维、状态管理、路由与 Next.js 服务端渲染',
+    status: 'in-progress',
+  },
+  {
+    title: '全栈开发',
+    description: 'Node.js、数据库设计、API 开发与后端架构基础',
+    status: 'planned',
+  },
+  {
+    title: '工程化实践',
+    description: 'CI/CD、Docker、云部署、性能优化与监控体系',
+    status: 'planned',
+  },
+];
+
+const statusStyles: Record<string, string> = {
+  completed: 'bg-violet-500/20 text-violet-300 border-violet-500/30',
+  'in-progress': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+  planned: 'bg-gray-500/20 text-gray-400 border-gray-500/30',
+};
+
+const statusLabels: Record<string, string> = {
+  completed: '已完成',
+  'in-progress': '进行中',
+  planned: '计划中',
+};
+---
+
+<section id="learning" class="py-24 px-6 bg-white/[0.02]">
+  <div class="max-w-4xl mx-auto">
+    <SectionHeading
+      title="学习路线"
+      subtitle="持续成长的路径规划，每一步都扎实前进"
+    />
+
+    <div class="relative">
+      <!-- 时间线竖线 -->
+      <div class="absolute left-8 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
+
+      <div class="flex flex-col gap-6">
+        {steps.map((step, i) => (
+          <div class="relative flex items-start gap-6">
+            <!-- 时间线 dot -->
+            <div class="hidden md:flex relative z-10 w-16 justify-center">
+              <div
+                class:list={[
+                  'w-4 h-4 rounded-full border-2',
+                  statusStyles[step.status] ?? '',
+                ]}
+              />
+            </div>
+
+            <GlassCard class="flex-1">
+              <div class="p-5">
+                <div class="flex items-center gap-3 mb-2">
+                  <h3 class="text-lg font-semibold text-white">{step.title}</h3>
+                  <span
+                    class:list={[
+                      'px-2 py-0.5 text-xs rounded-full border',
+                      statusStyles[step.status] ?? '',
+                    ]}
+                  >
+                    {statusLabels[step.status]}
+                  </span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">{step.description}</p>
+              </div>
+            </GlassCard>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
