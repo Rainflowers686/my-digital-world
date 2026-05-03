@@ -1,23 +1,12 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import SectionHeading from './SectionHeading.astro';
 
-const articles = [
-  {
-    title: 'Astro 6 初探：构建现代内容站点的新范式',
-    description: '深入了解岛屿架构、内容集合与 View Transitions API。',
-    date: '2026-04-28',
-  },
-  {
-    title: 'Tailwind CSS v4 实践指南',
-    description: 'CSS 优先配置与自定义主题的完整迁移方案。',
-    date: '2026-04-15',
-  },
-  {
-    title: '玻璃拟态设计：从灵感到实现',
-    description: '用 CSS backdrop-filter 探索液态玻璃视觉风格。',
-    date: '2026-03-22',
-  },
-];
+interface Props {
+  articles: CollectionEntry<'articles'>[];
+}
+
+const { articles } = Astro.props;
 ---
 
 <section id="articles" class="section-shell border-t border-[var(--border)]">
@@ -30,26 +19,30 @@ const articles = [
   <div class="divide-y divide-[var(--border)]">
     {articles.map((article) => (
       <a
-        href="#"
+        href={`/articles/${article.id}`}
         class="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-5 first:pt-0 last:pb-0 px-3 -mx-3 rounded-lg hover:bg-[var(--surface)] transition-colors duration-200"
       >
         <div class="min-w-0">
           <h3 class="text-[15px] font-medium text-[var(--text)] mb-0.5 group-hover:text-[var(--accent)] transition-colors duration-200 font-serif">
-            {article.title}
+            {article.data.title}
           </h3>
           <p class="text-[13px] text-[var(--muted)] leading-relaxed">
-            {article.description}
+            {article.data.description}
           </p>
         </div>
         <span class="text-[13px] text-[var(--muted)] flex-shrink-0 font-mono">
-          {article.date}
+          {article.data.date.toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          })}
         </span>
       </a>
     ))}
   </div>
 
   <div class="mt-8">
-    <a href="#" class="quiet-btn">
+    <a href="/articles" class="quiet-btn">
       全部文章
       <span class="text-[11px] font-mono">→</span>
     </a>

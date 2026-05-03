@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const phases = [
+  {
+    title: '编程基础',
+    items: ['TypeScript 深入理解', 'Git 版本控制', '命令行与 Shell', '基础调试技能'],
+    done: true,
+  },
+  {
+    title: '前端基础',
+    items: ['HTML 语义化', 'CSS 布局系统', '响应式设计', 'DOM 操作'],
+    done: true,
+  },
+  {
+    title: 'React / Astro',
+    items: ['组件化思维', '状态管理', 'Astro 静态生成', 'Tailwind CSS 主题系统'],
+    done: true,
+  },
+  {
+    title: '数据结构与算法',
+    items: ['数组与链表', '树与图', '排序与搜索', '动态规划入门'],
+    done: false,
+  },
+  {
+    title: '后端与数据库',
+    items: ['Node.js / FastAPI', 'PostgreSQL 基础', 'REST API 设计', '认证与授权'],
+    done: false,
+  },
+  {
+    title: 'AI 应用开发',
+    items: ['LLM API 调用', 'Prompt Engineering', 'RAG 检索增强', 'Agent 基础'],
+    done: false,
+  },
+  {
+    title: '工程化实践',
+    items: ['CI/CD 流水线', 'Docker 容器化', '性能优化', '可观测性'],
+    done: false,
+  },
+];
+---
+
+<Layout title="学习路线" description="系统性计算机科学学习路径。">
+  <main class="section-shell pt-20">
+    <SectionHeading
+      mono="Growth Path"
+      title="学习路线"
+      subtitle="从编程基础到工程化实践，一条持续成长的学习路径。"
+    />
+
+    <div class="max-w-2xl mx-auto">
+      {phases.map((phase, i) => (
+        <div class="relative flex gap-5 pb-8 last:pb-0">
+          {/* Timeline */}
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div
+              class:list={[
+                'w-5 h-5 rounded-full border-2 flex items-center justify-center text-[10px] font-medium',
+                phase.done
+                  ? 'bg-[var(--accent)] border-[var(--accent)] text-white'
+                  : 'bg-transparent border-[var(--border)] text-[var(--muted)]',
+              ]}
+            >
+              {phase.done ? '✓' : i + 1}
+            </div>
+            {i < phases.length - 1 && (
+              <div class="w-0.5 flex-1 bg-[var(--border)] mt-1" />
+            )}
+          </div>
+
+          {/* Content */}
+          <div class="pb-2">
+            <h2 class="text-base font-medium text-[var(--text)] font-serif mb-2">
+              {phase.title}
+            </h2>
+            <ul class="space-y-1">
+              {phase.items.map((item) => (
+                <li class="text-[13px] text-[var(--muted)] flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-[var(--border)] flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,48 @@
+---
+title: "Astro 6 + Tailwind CSS v4 搭建日志"
+description: "从零搭建个人网站的完整过程记录——技术决策、踩坑与心得。"
+date: 2026-05-01
+tags: ["Astro", "Tailwind CSS", "技术日志"]
+---
+
+这篇文章记录了用 Astro 6 和 Tailwind CSS v4 搭建个人网站的全过程。不是教程，而是真实的搭建日志——包括决策、踩坑和心得。
+
+## Day 1：项目初始化
+
+Astro 6 的脚手架非常简洁：
+
+```bash
+npm create astro@latest mywebsite
+```
+
+选择 `basics` 模板后，得到了一个极简的项目结构。接着安装 React、MDX 和 Tailwind CSS 集成：
+
+```bash
+npx astro add react mdx
+npm install @tailwindcss/vite tailwindcss
+```
+
+Tailwind v4 不需要 `tailwind.config.js`——配置通过 CSS 的 `@theme` 块完成。这是一个很大的改进，减少了配置文件的数量。
+
+## Day 2-3：设计系统的建立
+
+最初的尝试走了一些弯路。我用了深色背景 + 紫蓝渐变 + 玻璃拟态的方案，看起来很有"科技感"但阅读体验很差。
+
+后来转向 Claude 风格的暖色极简设计：
+
+- `--bg: #f7f3ea` 米黄纸感
+- `--text: #1f1b16` 深棕文字
+- `--accent: #c96442` 陶土橙色
+- Georgia 衬线标题 + 等宽技术标签
+
+设计 token 统一放在 `global.css` 的 `:root` 中，所有组件通过 CSS 变量引用。这个改变让后续的页面创建变得极其顺畅——打开一个新 `.astro` 文件，复用同样的 class，视觉一致性自动保证。
+
+## Day 4：内容系统
+
+Astro Content Collections 是 MDX 内容管理的核心。定义 schema 后，内容变成了类型安全的数据源。首页的项目和文章列表直接从 collection 读取，不再硬编码。
+
+## 心得
+
+1. **设计方向比技术实现更重要**——技术方案很快能换，但设计基调一旦确立，会影响所有后续决策
+2. **CSS 变量 > Tailwind 类**——设计 token 用 CSS 变量，Tailwind 类用于布局和间距，两者互补
+3. **先做骨架再填充内容**——页面结构和导航先就位，内容可以慢慢写

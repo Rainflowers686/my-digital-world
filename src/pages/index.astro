@@ -1,19 +1,28 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import LearningPath from '../components/LearningPath.astro';
 import LatestArticles from '../components/LatestArticles.astro';
 import Footer from '../components/Footer.astro';
+
+const allProjects = await getCollection('projects');
+allProjects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const featuredProjects = allProjects.slice(0, 3);
+
+const allArticles = await getCollection('articles');
+allArticles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const latestArticles = allArticles.slice(0, 3);
 ---
 
 <Layout
   title="首页"
-  description="个人数字世界 — 探索技术、设计与创造的无限可能"
+  description="个人数字世界 — 记录计算机学习、项目作品与长期成长。"
 >
   <Hero />
-  <FeaturedProjects />
+  <FeaturedProjects projects={featuredProjects} />
   <LearningPath />
-  <LatestArticles />
+  <LatestArticles articles={latestArticles} />
   <Footer />
 </Layout>

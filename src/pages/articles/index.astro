@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+const articles = await getCollection('articles');
+articles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title="文章" description="技术写作与学习笔记，记录思考与发现。">
+  <main class="section-shell pt-20">
+    <SectionHeading
+      mono="Writing"
+      title="文章"
+      subtitle="记录学习过程中的思考与发现。"
+    />
+
+    <div class="max-w-2xl mx-auto divide-y divide-[var(--border)]">
+      {articles.map((article) => (
+        <a
+          href={`/articles/${article.id}`}
+          class="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-5 first:pt-0 last:pb-0 px-3 -mx-3 rounded-lg hover:bg-[var(--surface)] transition-colors duration-200"
+        >
+          <div class="min-w-0">
+            <h2 class="text-[15px] font-medium text-[var(--text)] mb-0.5 group-hover:text-[var(--accent)] transition-colors duration-200 font-serif">
+              {article.data.title}
+            </h2>
+            <p class="text-[13px] text-[var(--muted)] leading-relaxed">
+              {article.data.description}
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              {article.data.tags.map((tag) => (
+                <span class="tag-pill">{tag}</span>
+              ))}
+            </div>
+          </div>
+          <span class="text-[13px] text-[var(--muted)] flex-shrink-0 font-mono">
+            {article.data.date.toLocaleDateString('zh-CN', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+            })}
+          </span>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>

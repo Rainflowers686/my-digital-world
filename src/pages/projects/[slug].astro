@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const projects = await getCollection('projects');
+const project = projects.find((p) => p.id === slug);
+
+if (!project) {
+  return Astro.rewrite('/404');
+}
+
+const { Content } = await render(project);
+const statusLabel: Record<string, string> = {
+  completed: '已完成',
+  'in-progress': '进行中',
+  planned: '计划中',
+};
+---
+
+<Layout
+  title={project.data.title}
+  description={project.data.description}
+>
+  <main class="section-shell pt-20">
+    <article class="max-w-2xl mx-auto">
+      <!-- Header -->
+      <header class="mb-12">
+        <p class="mono-label mb-3">
+          {project.data.date.toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </p>
+        <h1 class="text-3xl md:text-4xl font-normal text-[var(--text)] mb-4 tracking-[-0.02em] font-serif">
+          {project.data.title}
+        </h1>
+        <p class="text-[15px] text-[var(--muted)] leading-relaxed mb-5">
+          {project.data.description}
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="tag-pill">
+            {statusLabel[project.data.status] ?? project.data.status}
+          </span>
+          {project.data.tags.map((tag) => (
+            <span class="tag-pill">{tag}</span>
+          ))}
+        </div>
+
+        {(project.data.repo || project.data.demo) && (
+          <div class="flex items-center gap-3 mt-5">
+            {project.data.repo && (
+              <a href={project.data.repo} class="quiet-btn" target="_blank">
+                源代码
+              </a>
+            )}
+            {project.data.demo && (
+              <a href={project.data.demo} class="quiet-btn" target="_blank">
+                在线演示
+              </a>
+            )}
+          </div>
+        )}
+      </header>
+
+      <!-- Body -->
+      <div class="prose prose-lg max-w-none
+        [&_h2]:text-xl [&_h2]:font-normal [&_h2]:font-serif [&_h2]:text-[var(--text)] [&_h2]:mt-12 [&_h2]:mb-4
+        [&_h3]:text-lg [&_h3]:font-medium [&_h3]:font-serif [&_h3]:text-[var(--text)] [&_h3]:mt-8 [&_h3]:mb-3
+        [&_p]:text-[15px] [&_p]:text-[var(--muted)] [&_p]:leading-relaxed [&_p]:mb-4
+        [&_ul]:text-[15px] [&_ul]:text-[var(--muted)] [&_ul]:leading-relaxed [&_ul]:mb-4 [&_ul]:pl-5 [&_ul]:list-disc
+        [&_ol]:text-[15px] [&_ol]:text-[var(--muted)] [&_ol]:leading-relaxed [&_ol]:mb-4 [&_ol]:pl-5 [&_ol]:list-decimal
+        [&_li]:mb-1.5
+        [&_strong]:text-[var(--text)] [&_strong]:font-medium
+        [&_code]:text-[13px] [&_code]:font-mono [&_code]:bg-[var(--accent-soft)] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded
+        [&_pre]:bg-[var(--surface)] [&_pre]:border [&_pre]:border-[var(--border)] [&_pre]:rounded-xl [&_pre]:p-5 [&_pre]:mb-6 [&_pre]:overflow-x-auto
+        [&_pre_code]:bg-transparent [&_pre_code]:p-0
+        [&_blockquote]:border-l-2 [&_blockquote]:border-[var(--accent)] [&_blockquote]:pl-5 [&_blockquote]:text-[var(--muted)] [&_blockquote]:italic [&_blockquote]:mb-4
+        [&_hr]:border-[var(--border)] [&_hr]:my-10
+        [&_a]:text-[var(--accent)] [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:no-underline
+      ">
+        <Content />
+      </div>
+
+      <!-- Back -->
+      <div class="mt-16 pt-8 border-t border-[var(--border)]">
+        <a href="/projects" class="quiet-btn">
+          ← 所有项目
+        </a>
+      </div>
+    </article>
+  </main>
+</Layout>

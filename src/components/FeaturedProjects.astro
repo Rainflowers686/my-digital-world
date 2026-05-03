@@ -1,23 +1,18 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import SectionHeading from './SectionHeading.astro';
 
-const projects = [
-  {
-    title: '个人网站',
-    description: '基于 Astro 6 与 Tailwind CSS 构建的个人数字空间，注重排版与阅读体验。',
-    tags: ['Astro', 'TypeScript', 'Tailwind'],
-  },
-  {
-    title: 'AI 学习助手',
-    description: '接入大语言模型 API 的智能学习工具，支持对话问答与知识检索。',
-    tags: ['Python', 'LangChain', 'FastAPI'],
-  },
-  {
-    title: '组件库设计',
-    description: '面向现代 Web 应用的 UI 组件系统，注重无障碍访问与主题定制。',
-    tags: ['React', 'Storybook', 'Radix UI'],
-  },
-];
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+
+const statusLabel: Record<string, string> = {
+  completed: '已完成',
+  'in-progress': '进行中',
+  planned: '计划中',
+};
 ---
 
 <section id="projects" class="section-shell">
@@ -29,19 +24,22 @@ const projects = [
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
     {projects.map((project) => (
-      <div class="soft-card p-6 flex flex-col">
-        <h3 class="text-base font-medium text-[var(--text)] mb-2 font-serif">
-          {project.title}
+      <a
+        href={`/projects/${project.id}`}
+        class="soft-card p-6 flex flex-col group"
+      >
+        <h3 class="text-base font-medium text-[var(--text)] mb-2 font-serif group-hover:text-[var(--accent)] transition-colors duration-200">
+          {project.data.title}
         </h3>
         <p class="text-sm text-[var(--muted)] leading-relaxed mb-5 flex-1">
-          {project.description}
+          {project.data.description}
         </p>
         <div class="flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
+          {project.data.tags.map((tag) => (
             <span class="tag-pill">{tag}</span>
           ))}
         </div>
-      </div>
+      </a>
     ))}
   </div>
 </section>

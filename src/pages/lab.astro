@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const experiments = [
+  {
+    title: '命令行组件',
+    description: '模拟终端输出的交互式命令行 UI 组件。',
+    status: '计划中',
+  },
+  {
+    title: '算法可视化',
+    description: '排序、搜索、图论算法的逐步动画演示。',
+    status: '计划中',
+  },
+  {
+    title: 'CSS 实验场',
+    description: '纯 CSS 实现的视觉效果集合——动画、滤镜、混合模式。',
+    status: '计划中',
+  },
+  {
+    title: 'AI 对话助手',
+    description: '接入 LLM API 的轻量对话组件，探索 AI 交互模式。',
+    status: '计划中',
+  },
+  {
+    title: '数据可视化',
+    description: '使用 Canvas 或 SVG 的数据图表与信息图展示。',
+    status: '计划中',
+  },
+];
+---
+
+<Layout title="实验室" description="实验性项目与交互组件试验场。">
+  <main class="section-shell pt-20">
+    <SectionHeading
+      mono="Experiments"
+      title="实验室"
+      subtitle="一些实验性的小项目、交互组件和视觉探索。"
+    />
+
+    <div class="max-w-2xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {experiments.map((exp) => (
+          <div class="soft-card p-5">
+            <div class="flex items-center gap-2 mb-2">
+              <h2 class="text-sm font-medium text-[var(--text)] font-serif">
+                {exp.title}
+              </h2>
+              <span class="tag-pill !text-[10px]">{exp.status}</span>
+            </div>
+            <p class="text-[13px] text-[var(--muted)] leading-relaxed">
+              {exp.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-[13px] text-[var(--muted)] mt-12">
+        更多实验项目即将上线。如果你有有趣的想法，欢迎交流。
+      </p>
+    </div>
+  </main>
+</Layout>

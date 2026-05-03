@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+const projects = await getCollection('projects');
+projects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const statusLabel: Record<string, string> = {
+  completed: '已完成',
+  'in-progress': '进行中',
+  planned: '计划中',
+};
+---
+
+<Layout title="项目" description="精选项目作品，展示技术实践与设计思考。">
+  <main class="section-shell pt-20">
+    <SectionHeading
+      mono="Selected Work"
+      title="项目"
+      subtitle="从想法到实现，每个项目都是一次完整的技术实践。"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {projects.map((project) => (
+        <a
+          href={`/projects/${project.id}`}
+          class="soft-card p-6 flex flex-col group"
+        >
+          <div class="flex items-center gap-2 mb-3">
+            <h2 class="text-base font-medium text-[var(--text)] font-serif group-hover:text-[var(--accent)] transition-colors duration-200">
+              {project.data.title}
+            </h2>
+            <span class="tag-pill !text-[10px]">
+              {statusLabel[project.data.status] ?? project.data.status}
+            </span>
+          </div>
+          <p class="text-sm text-[var(--muted)] leading-relaxed mb-4 flex-1">
+            {project.data.description}
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {project.data.tags.map((tag) => (
+              <span class="tag-pill">{tag}</span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
