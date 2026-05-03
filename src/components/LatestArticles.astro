@@ -9,14 +9,14 @@ interface Props {
 const { articles } = Astro.props;
 ---
 
-<section id="articles" class="section-shell border-t border-[var(--border)]">
+<section id="articles" class="section-shell section-divider">
   <SectionHeading
     mono="Writing"
     title="最新文章"
     subtitle="记录学习过程中的思考与发现。"
   />
 
-  <div class="divide-y divide-[var(--border)]">
+  <div class="divide-y divide-light">
     {articles.map((article) => (
       <a
         href={`/articles/${article.id}`}

@@ -226,7 +226,7 @@ export default function AppearancePanel() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
       {open && (
-        <div className="soft-card p-4 min-w-[200px] space-y-4 animate-in">
+        <div className="soft-card p-4 min-w-[200px] space-y-4 animate-in max-h-[60vh] overflow-y-auto">
           <fieldset>
             <legend className="mono-label mb-2">Theme</legend>
             <div className="flex flex-col gap-0.5">
