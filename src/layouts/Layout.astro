@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import GradientBg from '../components/GradientBg.astro';
+import Navbar from '../components/Navbar.tsx';
 
 interface Props {
   title?: string;
@@ -7,9 +9,8 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-
-const siteTitle = title ? `${title} — Digital World` : 'Digital World';
-const siteDescription = description ?? '个人数字世界 — 探索技术、设计与创造的无限可能';
+const pageTitle = title ? `${title} — Digital World` : 'Digital World';
+const pageDescription = description ?? '个人数字世界 — 探索技术、设计与创造的无限可能';
 ---
 
 <!doctype html>
@@ -20,10 +21,14 @@ const siteDescription = description ?? '个人数字世界 — 探索技术、�
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={siteDescription} />
-    <title>{siteTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
   </head>
-  <body class="bg-gray-950 text-gray-100 antialiased">
-    <slot />
+  <body>
+    <GradientBg />
+    <Navbar client:load />
+    <main>
+      <slot />
+    </main>
   </body>
 </html>

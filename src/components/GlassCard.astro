@@ -1,18 +1,13 @@
 ---
 interface Props {
   class?: string;
-  hover?: boolean;
+  as?: 'div' | 'article';
 }
 
-const { class: extraClass = '', hover = true } = Astro.props;
+const { class: extraClass = '', as = 'div' } = Astro.props;
+const Tag = as;
 ---
 
-<div
-  class:list={[
-    'glass-card',
-    hover && 'glass-card-hover',
-    extraClass,
-  ]}
->
+<Tag class:list={['glass-card', extraClass]}>
   <slot />
-</div>
+</Tag>

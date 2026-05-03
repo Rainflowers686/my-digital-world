@@ -1,74 +1,55 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import GlassCard from './GlassCard.astro';
 
 const articles = [
   {
     title: 'Astro 6 初探：构建现代内容站点的新范式',
-    description: '深入了解 Astro 6 的岛屿架构、内容集合与 View Transitions API',
+    description: '深入了解岛屿架构、内容集合与 View Transitions API。',
     date: '2026-04-28',
-    tags: ['Astro', '前端架构'],
   },
   {
     title: 'Tailwind CSS v4 实践指南',
-    description: '从 v3 迁移到 v4，CSS 优先配置与自定义主题的完整方案',
+    description: 'CSS 优先配置与自定义主题的完整迁移方案。',
     date: '2026-04-15',
-    tags: ['CSS', 'Tailwind'],
   },
   {
     title: '玻璃拟态设计：从灵感到实现',
-    description: '探索 Glassmorphism 设计趋势，用 CSS backdrop-filter 实现液态玻璃效果',
+    description: '用 CSS backdrop-filter 探索液态玻璃视觉风格。',
     date: '2026-03-22',
-    tags: ['设计', 'CSS'],
   },
 ];
 ---
 
-<section id="articles" class="py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <SectionHeading
-      title="最新文章"
-      subtitle="记录学习过程中的思考与发现"
-    />
+<section id="articles" class="section-shell border-t border-[var(--glass-border)]">
+  <SectionHeading
+    label="写作"
+    title="Articles"
+    subtitle="记录学习过程中的思考与发现。"
+  />
 
-    <div class="flex flex-col gap-4">
-      {articles.map((article) => (
-        <GlassCard>
-          <a href="#" class="block p-6">
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-violet-400 transition-colors">
-                  {article.title}
-                </h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-3">
-                  {article.description}
-                </p>
-                <div class="flex items-center gap-3">
-                  <span class="text-xs text-gray-500">{article.date}</span>
-                  <div class="flex gap-2">
-                    {article.tags.map((tag) => (
-                      <span class="px-2 py-0.5 text-xs rounded-full bg-white/5 text-gray-400 border border-white/5">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <span class="text-gray-500 text-xl mt-1 flex-shrink-0">→</span>
-            </div>
-          </a>
-        </GlassCard>
-      ))}
-    </div>
-
-    <div class="mt-10 text-center">
+  <div class="flex flex-col gap-3">
+    {articles.map((article) => (
       <a
         href="#"
-        class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors duration-200"
+        class="group flex items-center justify-between gap-6 p-5 rounded-xl border border-transparent hover:bg-white/[0.03] hover:border-[var(--glass-border)] transition-all duration-300"
       >
-        查看全部文章
-        <span>→</span>
+        <div class="min-w-0">
+          <h3 class="text-[15px] font-medium text-white mb-1 group-hover:text-[var(--primary-soft)] transition-colors duration-200">
+            {article.title}
+          </h3>
+          <p class="text-[13px] text-[var(--muted)] leading-relaxed">
+            {article.description}
+          </p>
+        </div>
+        <span class="text-[13px] text-[var(--muted)] flex-shrink-0">{article.date}</span>
       </a>
-    </div>
+    ))}
+  </div>
+
+  <div class="mt-8">
+    <a href="#" class="text-[13px] text-[var(--muted)] hover:text-white transition-colors duration-200 inline-flex items-center gap-1.5">
+      全部文章
+      <span class="text-xs">→</span>
+    </a>
   </div>
 </section>

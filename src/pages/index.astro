@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.tsx';
-import GradientBg from '../components/GradientBg.astro';
 import Hero from '../components/Hero.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import LearningPath from '../components/LearningPath.astro';
@@ -13,8 +11,6 @@ import Footer from '../components/Footer.astro';
   title="首页"
   description="个人数字世界 — 探索技术、设计与创造的无限可能"
 >
-  <GradientBg />
-  <Navbar client:load />
   <Hero />
   <FeaturedProjects />
   <LearningPath />

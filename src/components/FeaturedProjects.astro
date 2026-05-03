@@ -5,49 +5,42 @@ import GlassCard from './GlassCard.astro';
 const projects = [
   {
     title: '个人网站',
-    description: '基于 Astro + React + Tailwind CSS 构建的现代个人数字空间，采用玻璃拟态设计风格。',
-    tags: ['Astro', 'React', 'Tailwind CSS', 'TypeScript'],
-    icon: '🌐',
+    description: '基于 Astro 6 + Tailwind CSS v4 构建的个人数字空间，采用液态玻璃设计语言。',
+    tags: ['Astro', 'TypeScript', 'Tailwind CSS'],
   },
   {
     title: 'AI 学习助手',
-    description: '接入大语言模型 API 的智能学习辅助工具，支持对话问答与知识库检索。',
-    tags: ['Python', 'LangChain', 'FastAPI', 'PostgreSQL'],
-    icon: '🤖',
+    description: '接入大语言模型 API 的智能学习工具，支持对话问答与知识库检索。',
+    tags: ['Python', 'LangChain', 'FastAPI'],
   },
   {
     title: '组件库设计',
-    description: '一套面向现代 Web 应用的 UI 组件库，注重无障碍访问与主题定制能力。',
-    tags: ['React', 'Storybook', 'CSS Modules', 'Radix UI'],
-    icon: '🧩',
+    description: '面向现代 Web 应用的 UI 组件库系统，注重无障碍访问与主题定制。',
+    tags: ['React', 'Storybook', 'Radix UI'],
   },
 ];
 ---
 
-<section id="projects" class="py-24 px-6">
-  <div class="max-w-6xl mx-auto">
-    <SectionHeading
-      title="精选项目"
-      subtitle="近期完成的一些作品，展示了技术与设计的融合"
-    />
+<section id="projects" class="section-shell">
+  <SectionHeading
+    label="精选作品"
+    title="Projects"
+    subtitle="近期完成的一些项目，体现技术深度与设计思考。"
+  />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project) => (
-        <GlassCard>
-          <div class="p-6">
-            <span class="text-3xl mb-4 block">{project.icon}</span>
-            <h3 class="text-lg font-semibold text-white mb-2">{project.title}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed mb-4">{project.description}</p>
-            <div class="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span class="px-2.5 py-0.5 text-xs rounded-full bg-white/5 text-gray-300 border border-white/5">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </GlassCard>
-      ))}
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    {projects.map((project) => (
+      <GlassCard class="flex flex-col p-6">
+        <h3 class="text-base font-semibold text-white mb-2">{project.title}</h3>
+        <p class="text-sm text-[var(--muted)] leading-relaxed mb-5 flex-1">
+          {project.description}
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          {project.tags.map((tag) => (
+            <span class="tag-pill">{tag}</span>
+          ))}
+        </div>
+      </GlassCard>
+    ))}
   </div>
 </section>

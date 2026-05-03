@@ -1,32 +1,61 @@
-<section id="hero" class="relative min-h-screen flex items-center justify-center px-6 pt-16">
-  <div class="max-w-4xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full glass text-sm text-gray-300">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-violet-500" />
-      </span>
-      V0.1 · 持续构建中
-    </div>
+<section id="hero" class="relative min-h-screen flex items-center px-6 pt-14">
+  <div class="section-shell !py-0 w-full">
+    <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
 
-    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6">
-      探索我的<br class="md:hidden" />
-      <span class="gradient-text">数字世界</span>
-    </h1>
+      <!-- 左侧：标题 + 介绍 + CTA -->
+      <div class="flex-1 pt-8 lg:pt-0">
+        <p class="section-label">Hi, I'm</p>
+        <h1 class="text-5xl md:text-7xl font-bold tracking-[-0.03em] leading-[1.05] text-white mb-6 max-w-xl">
+          构建<span class="text-[var(--primary-soft)]">数字</span>世界
+        </h1>
+        <p class="text-[var(--muted)] text-lg leading-relaxed max-w-lg mb-10">
+          计算机科学专业在读，专注于现代 Web 开发与软件工程实践。用代码将想法转化为体验。
+        </p>
 
-    <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-      一个热爱技术、设计与创造的个人空间。在这里分享项目实践、学习路线与思考笔记。
-    </p>
+        <div class="flex items-center gap-3">
+          <a href="#projects" class="glow-btn">查看项目</a>
+          <a href="#learning" class="ghost-btn">学习路线</a>
+        </div>
+      </div>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="#projects" class="btn-gradient text-sm inline-block">
-        查看项目
-      </a>
-      <a
-        href="#articles"
-        class="px-8 py-3 text-sm font-medium text-gray-300 rounded-xl border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all duration-300 inline-block"
-      >
-        阅读文章
-      </a>
+      <!-- 右侧：玻璃信息面板 -->
+      <div class="w-full lg:w-[340px] flex-shrink-0">
+        <div class="glass-panel p-6 space-y-5">
+          <div>
+            <p class="text-xs text-[var(--muted)] uppercase tracking-wider mb-3">当前状态</p>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="status-dot active" />
+                <span class="text-sm text-white">Computer Science Student</span>
+              </div>
+              <p class="text-sm text-[var(--muted)] leading-relaxed">
+                正在构建个人数字世界，专注于前端工程与产品设计。
+              </p>
+            </div>
+          </div>
+
+          <hr class="hr-fade" />
+
+          <div>
+            <p class="text-xs text-[var(--muted)] uppercase tracking-wider mb-3">技术栈</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag-pill">Astro</span>
+              <span class="tag-pill">TypeScript</span>
+              <span class="tag-pill">React</span>
+              <span class="tag-pill">Tailwind CSS</span>
+              <span class="tag-pill">MDX</span>
+            </div>
+          </div>
+
+          <hr class="hr-fade" />
+
+          <div>
+            <p class="text-xs text-[var(--muted)] uppercase tracking-wider mb-3">构建版本</p>
+            <p class="text-sm text-white font-mono">V0.2 <span class="text-[var(--muted)]">· 视觉重构中</span></p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
