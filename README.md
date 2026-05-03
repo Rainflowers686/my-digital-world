@@ -1,46 +1,112 @@
-# Astro Starter Kit: Basics
+# Rain's Digital World
 
-```sh
-npm create astro@latest -- --template basics
+个人数字世界 — 一个记录计算机学习、项目作品与长期成长的个人网站。
+
+**设计风格**：暖色极简 + Claude-inspired + 苹果液态玻璃  
+**技术栈**：Astro 6 + TypeScript + Tailwind CSS v4 + React 19 + MDX
+
+## 功能模块
+
+- **首页** — Hero 入口 + 精选项目 ×3 + 学习路线预览 + 最新文章 ×3
+- **项目** — `/projects` 列表页 + `/projects/[slug]` 案例研究详情页（MDX）
+- **文章** — `/articles` 列表页 + `/articles/[slug]` 技术文章详情页（MDX）
+- **学习路线** — `/learning` 七阶段时间线展示
+- **实验室** — `/lab` 实验项目占位
+- **外观设置** — 右下角面板：3 套主题 × 4 种背景 × 3 档玻璃强度（localStorage 持久化）
+- **404** — 自定义未找到页面
+
+## 本地运行
+
+```bash
+npm install
+npm run dev        # http://localhost:4321
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 构建
 
-## 🚀 Project Structure
+```bash
+npm run build      # 输出到 dist/
+npm run preview    # 预览构建结果
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+## 目录结构
 
-```text
-/
+```
+mywebsite/
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+│   ├── favicon.ico
+│   ├── favicon.svg          # 品牌 R 图标
+│   ├── og.svg               # Open Graph 分享图
+│   ├── robots.txt
+│   └── backgrounds/         # 4 个 SVG 背景纹理
+├── src/
+│   ├── components/
+│   │   ├── react/
+│   │   │   └── AppearancePanel.tsx   # 外观设置面板
+│   │   ├── Navbar.tsx
+│   │   ├── Hero.astro
+│   │   ├── FeaturedProjects.astro
+│   │   ├── LatestArticles.astro
+│   │   ├── LearningPath.astro
+│   │   ├── SectionHeading.astro
+│   │   └── Footer.astro
+│   ├── content/
+│   │   ├── projects/        # 项目 MDX（3 篇）
+│   │   └── articles/        # 文章 MDX（3 篇）
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── 404.astro
+│   │   ├── learning.astro
+│   │   ├── lab.astro
+│   │   ├── projects/
+│   │   │   ├── index.astro
+│   │   │   └── [slug].astro
+│   │   └── articles/
+│   │       ├── index.astro
+│   │       └── [slug].astro
+│   ├── styles/
+│   │   └── global.css
+│   └── content.config.ts
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 版本路线
 
-## 🧞 Commands
+| 版本 | 内容 |
+|------|------|
+| V0.1 | Astro 初始化 + 首页落地 |
+| V0.2 | 深色科技风（已废弃） |
+| V0.3 | 暖色极简 Claude 风格确立 |
+| V0.4 | 内容骨架：Content Collections + 多页面 |
+| V0.5 | 详情页质感升级：prose-custom + Case Study |
+| V0.6 | 外观设置系统：3 主题 × 4 背景 × 3 玻璃强度 |
+| V0.7 | 移动端适配与纵向节奏统一 |
+| V0.8 | SEO + 404 + OG 分享图 + 项目清理 + 部署准备 |
 
-All commands are run from the root of the project, from a terminal:
+## 部署
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+推荐使用 **Cloudflare Pages** 或 **GitHub Pages**：
 
-## 👀 Want to learn more?
+1. 将项目推送到 GitHub
+2. 在 `astro.config.mjs` 中设置 `site` 为你的真实域名（OG 图片需要绝对 URL）
+3. 在 `src/components/Footer.astro` 中替换社交链接
+4. 部署设置：
+   - **Build command**: `npm run build`
+   - **Output directory**: `dist`
+   - **Node version**: `>=22.12.0`
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+可选：安装 `@astrojs/sitemap` 自动生成 sitemap：
+```bash
+npx astro add sitemap
+```
+
+## 部署前需手动替换
+
+- [ ] `astro.config.mjs` → `site` 设为真实域名
+- [ ] `src/components/Footer.astro` → GitHub / Twitter / Email 链接
+- [ ] `public/og.svg` → 如需自定义 OG 分享图样式
+- [ ] （可选）`npx astro add sitemap` 添加站点地图

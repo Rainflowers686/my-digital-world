@@ -6,9 +6,10 @@ import AppearancePanel from '../components/react/AppearancePanel.tsx';
 interface Props {
   title?: string;
   description?: string;
+  ogType?: 'website' | 'article';
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogType = 'website' } = Astro.props;
 const pageTitle = title ? `${title} — Rain's Digital World` : "Rain's Digital World";
 const pageDescription = description ?? '个人数字世界 — 记录计算机学习、项目作品与长期成长。';
 ---
@@ -22,7 +23,23 @@ const pageDescription = description ?? '个人数字世界 — 记录计算机�
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={pageDescription} />
+    <meta name="theme-color" content="#f7f3ea" />
     <title>{pageTitle}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Rain's Digital World" />
+    <meta property="og:image" content="/og.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content="/og.svg" />
   </head>
   <body>
     <Navbar client:load />

@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="未找到" description="页面不存在">
+  <main class="section-shell pt-20">
+    <div class="max-w-lg mx-auto text-center py-16">
+      <p class="mono-label mb-4">404</p>
+      <h1 class="text-3xl md:text-4xl font-normal text-[var(--text)] mb-4 font-serif tracking-[-0.02em]">
+        页面不存在
+      </h1>
+      <p class="text-[15px] text-[var(--muted)] leading-relaxed mb-8">
+        你访问的页面可能已被移动、删除，或从未存在过。
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="/" class="quiet-btn">返回首页</a>
+        <a href="/projects" class="quiet-btn">浏览项目</a>
+        <a href="/articles" class="quiet-btn">阅读文章</a>
+      </div>
+    </div>
+  </main>
+</Layout>
