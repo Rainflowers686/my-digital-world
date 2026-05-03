@@ -19,28 +19,33 @@ articles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
       {articles.map((article) => (
         <a
           href={`/articles/${article.id}`}
-          class="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-5 first:pt-0 last:pb-0 px-3 -mx-3 rounded-lg hover:bg-[var(--surface)] transition-colors duration-200"
+          class="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-5 first:pt-0 last:pb-0 px-4 -mx-4 rounded-lg hover:bg-[var(--surface)] transition-colors duration-200"
         >
-          <div class="min-w-0">
-            <h2 class="text-[15px] font-medium text-[var(--text)] mb-0.5 group-hover:text-[var(--accent)] transition-colors duration-200 font-serif">
-              {article.data.title}
-            </h2>
-            <p class="text-[13px] text-[var(--muted)] leading-relaxed">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <h2 class="text-[15px] font-medium text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-200 font-serif">
+                {article.data.title}
+              </h2>
+              <span class="text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors duration-200 flex-shrink-0 font-mono text-xs opacity-0 group-hover:opacity-100">
+                →
+              </span>
+            </div>
+            <p class="text-[13px] text-[var(--muted)] leading-relaxed mb-2">
               {article.data.description}
             </p>
-            <div class="flex flex-wrap gap-1.5 mt-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-[11px] font-mono text-[var(--muted)]">
+                {article.data.date.toLocaleDateString('zh-CN', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                })}
+              </span>
               {article.data.tags.map((tag) => (
                 <span class="tag-pill">{tag}</span>
               ))}
             </div>
           </div>
-          <span class="text-[13px] text-[var(--muted)] flex-shrink-0 font-mono">
-            {article.data.date.toLocaleDateString('zh-CN', {
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-            })}
-          </span>
         </a>
       ))}
     </div>
