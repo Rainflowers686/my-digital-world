@@ -95,6 +95,7 @@ mywebsite/
 | V1.3 | 核心项目 Case Study 完善 |
 | V1.4 | 全站发布质量审计 |
 | V1.4.1 | 版本记录同步 |
+| V1.5 | Sitemap + Footer 链接 + 项目元信息收尾 |
 
 ## 部署
 

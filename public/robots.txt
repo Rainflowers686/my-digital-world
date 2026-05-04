@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://rain-lab.com/sitemap-index.xml
