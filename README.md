@@ -115,8 +115,7 @@ mywebsite/
 
 ### 部署前需手动替换
 
-- [ ] `src/components/Footer.astro` → GitHub / Twitter / Email 链接
-- [ ] （可选）`npx astro add sitemap` 添加站点地图
+- [ ] `src/components/Footer.astro` → Twitter / Email 链接（GitHub 已更新）
 
 ## GitHub About 建议
 
