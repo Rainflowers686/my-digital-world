@@ -89,24 +89,29 @@ mywebsite/
 
 ## 部署
 
-推荐使用 **Cloudflare Pages** 或 **GitHub Pages**：
+正式域名：[https://rain-lab.com](https://rain-lab.com)
 
-1. 将项目推送到 GitHub
-2. 在 `astro.config.mjs` 中设置 `site` 为你的真实域名（OG 图片需要绝对 URL）
-3. 在 `src/components/Footer.astro` 中替换社交链接
-4. 部署设置：
-   - **Build command**: `npm run build`
-   - **Output directory**: `dist`
-   - **Node version**: `>=22.12.0`
+部署平台：**Cloudflare Pages**（通过 GitHub 自动部署）
 
-可选：安装 `@astrojs/sitemap` 自动生成 sitemap：
+### 本地运行
+
 ```bash
-npx astro add sitemap
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # 输出到 dist/
 ```
 
-## 部署前需手动替换
+### 部署配置（Cloudflare Pages）
 
-- [ ] `astro.config.mjs` → `site` 设为真实域名
+| 字段 | 值 |
+|------|-----|
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Node.js version | `22.x` |
+
+无需环境变量。
+
+### 部署前需手动替换
+
 - [ ] `src/components/Footer.astro` → GitHub / Twitter / Email 链接
-- [ ] `public/og.svg` → 如需自定义 OG 分享图样式
 - [ ] （可选）`npx astro add sitemap` 添加站点地图

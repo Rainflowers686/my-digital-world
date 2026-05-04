@@ -9,6 +9,8 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://rain-lab.com',
+
   vite: {
     plugins: [tailwindcss()]
   },
