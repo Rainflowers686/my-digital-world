@@ -15,7 +15,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-40 nav-shell">
       <div className="mx-auto max-w-6xl px-6 h-11 flex items-center justify-between">
         <a href="/" className="text-sm font-semibold text-[var(--text)] tracking-tight">
-          Rain's Digital World
+          Rain Lab
         </a>
 
         <div className="hidden md:flex items-center gap-6">

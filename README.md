@@ -1,8 +1,10 @@
-# Rain's Digital World
+# Rain Lab
 
-个人数字世界 — 一个记录计算机学习、项目作品与长期成长的个人网站。
+个人数字实验室 — 记录计算机学习、项目作品、技术文章与长期成长的个人网站。
 
-**设计风格**：暖色极简 + Claude-inspired + 苹果液态玻璃  
+⚡ [rain-lab.com](https://rain-lab.com)
+
+**设计风格**：暖色极简 + Claude-inspired  
 **技术栈**：Astro 6 + TypeScript + Tailwind CSS v4 + React 19 + MDX
 
 ## 功能模块
@@ -86,6 +88,8 @@ mywebsite/
 | V0.6 | 外观设置系统：3 主题 × 4 背景 × 3 玻璃强度 |
 | V0.7 | 移动端适配与纵向节奏统一 |
 | V0.8 | SEO + 404 + OG 分享图 + 项目清理 + 部署准备 |
+| V0.9 | Cloudflare Pages 部署 + 正式域名 rain-lab.com |
+| V1.0 | 品牌统一为 Rain Lab + 正式上线 |
 
 ## 部署
 
@@ -93,15 +97,7 @@ mywebsite/
 
 部署平台：**Cloudflare Pages**（通过 GitHub 自动部署）
 
-### 本地运行
-
-```bash
-npm install
-npm run dev        # http://localhost:4321
-npm run build      # 输出到 dist/
-```
-
-### 部署配置（Cloudflare Pages）
+### 部署配置
 
 | 字段 | 值 |
 |------|-----|
@@ -115,3 +111,15 @@ npm run build      # 输出到 dist/
 
 - [ ] `src/components/Footer.astro` → GitHub / Twitter / Email 链接
 - [ ] （可选）`npx astro add sitemap` 添加站点地图
+
+## GitHub About 建议
+
+仓库 Description：
+```
+Rain Lab — A personal digital lab for projects, notes, learning and experiments.
+```
+
+仓库 Topics：
+```
+astro tailwindcss typescript mdx personal-website portfolio digital-garden cloudflare-pages
+```
