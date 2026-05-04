@@ -264,6 +264,47 @@ h1, h2, h3, h4 {
   margin-bottom: 1rem;
 }
 
+.prose-custom table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose-custom thead {
+  border-bottom: 2px solid var(--border);
+}
+
+.prose-custom thead th {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  background: var(--accent-soft);
+  white-space: nowrap;
+}
+
+.prose-custom tbody td {
+  padding: 0.5rem 0.75rem;
+  color: var(--muted);
+  border-bottom: 1px solid rgb(var(--border-rgb) / 0.05);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.prose-custom tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose-custom tbody tr:hover td {
+  background: rgb(var(--surface-rgb) / 0.4);
+}
+
 .prose-custom hr {
   border: none;
   border-top: 1px solid rgb(var(--border-rgb) / var(--glass-border-alpha));
