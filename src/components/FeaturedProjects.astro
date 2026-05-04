@@ -19,7 +19,7 @@ const statusLabel: Record<string, string> = {
   <SectionHeading
     mono="Selected Work"
     title="精选项目"
-    subtitle="近期完成的一些作品，体现技术深度与设计思考。"
+    subtitle="从零开始构建的项目，每一步都是学习的过程。"
   />
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -28,9 +28,14 @@ const statusLabel: Record<string, string> = {
         href={`/projects/${project.id}`}
         class="soft-card p-6 flex flex-col group"
       >
-        <h3 class="text-base font-medium text-[var(--text)] mb-2 font-serif group-hover:text-[var(--accent)] transition-colors duration-200">
-          {project.data.title}
-        </h3>
+        <div class="flex items-center gap-2 mb-2">
+          <h3 class="text-base font-medium text-[var(--text)] font-serif group-hover:text-[var(--accent)] transition-colors duration-200">
+            {project.data.title}
+          </h3>
+          <span class="tag-pill !text-[10px]">
+            {statusLabel[project.data.status] ?? project.data.status}
+          </span>
+        </div>
         <p class="text-sm text-[var(--muted)] leading-relaxed mb-5 flex-1">
           {project.data.description}
         </p>

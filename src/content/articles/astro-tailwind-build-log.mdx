@@ -1,48 +1,68 @@
 ---
-title: "Astro 6 + Tailwind CSS v4 搭建日志"
-description: "从零搭建个人网站的完整过程记录——技术决策、踩坑与心得。"
+title: "Rain Lab 搭建日志：从 Astro 初始化到 Cloudflare 部署"
+description: "用 Astro 6 + Tailwind CSS v4 从零搭建个人网站的真实过程——包括踩坑、debug 和心得。"
 date: 2026-05-01
-tags: ["Astro", "Tailwind CSS", "技术日志"]
+tags: ["Astro", "Tailwind CSS", "Cloudflare", "部署"]
 ---
 
-这篇文章记录了用 Astro 6 和 Tailwind CSS v4 搭建个人网站的全过程。不是教程，而是真实的搭建日志——包括决策、踩坑和心得。
+这是搭建 Rain Lab 的全过程记录。不是教程，是一个大一生边学边做的真实日志。
 
-## Day 1：项目初始化
+## 环境搭建
 
-Astro 6 的脚手架非常简洁：
+Astro 6 的初始化非常快：
 
 ```bash
 npm create astro@latest mywebsite
-```
-
-选择 `basics` 模板后，得到了一个极简的项目结构。接着安装 React、MDX 和 Tailwind CSS 集成：
-
-```bash
 npx astro add react mdx
 npm install @tailwindcss/vite tailwindcss
 ```
 
-Tailwind v4 不需要 `tailwind.config.js`——配置通过 CSS 的 `@theme` 块完成。这是一个很大的改进，减少了配置文件的数量。
+Tailwind v4 最大的变化是不需要 `tailwind.config.js` 了。所有配置通过 CSS 的 `@theme` 块完成：
 
-## Day 2-3：设计系统的建立
+```css
+@import "tailwindcss";
+@theme {
+  --color-accent: #c96442;
+}
+```
 
-最初的尝试走了一些弯路。我用了深色背景 + 紫蓝渐变 + 玻璃拟态的方案，看起来很有"科技感"但阅读体验很差。
+## 踩坑记录
 
-后来转向 Claude 风格的暖色极简设计：
+**坑 1：Astro 6 Content Collections API 变了。**
 
-- `--bg: #f7f3ea` 米黄纸感
-- `--text: #1f1b16` 深棕文字
-- `--accent: #c96442` 陶土橙色
-- Georgia 衬线标题 + 等宽技术标签
+V0.4 时用 `import { defineCollection } from 'astro:content'` 定义集合，配 `src/content/config.ts`，build 直接报错。查了一下午才发现 Astro 6 必须用 `src/content.config.ts` 且要加 `glob()` loader：
 
-设计 token 统一放在 `global.css` 的 `:root` 中，所有组件通过 CSS 变量引用。这个改变让后续的页面创建变得极其顺畅——打开一个新 `.astro` 文件，复用同样的 class，视觉一致性自动保证。
+```ts
+import { glob } from 'astro/loaders';
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/projects' }),
+  schema: z.object({ ... }),
+});
+```
 
-## Day 4：内容系统
+这个变化在新版文档里写得不够明显，花了不少时间 debug。
 
-Astro Content Collections 是 MDX 内容管理的核心。定义 schema 后，内容变成了类型安全的数据源。首页的项目和文章列表直接从 collection 读取，不再硬编码。
+**坑 2：Glass Strength 导致内容看不清。**
+
+V0.6 时做了一个"玻璃强度"系统，用 `--glass-opacity` 控制卡片透明度。Strong 模式 opacity=0.48，卡片背景太透导致文字几乎看不清。后来把变量重命名为 `--glass-bg-alpha`，并确认文字颜色走独立变量不受影响。
+
+**坑 3：Dark Glass 主题的亮背景冲突。**
+
+Warm Aurora 背景包含橙色光晕，搭配 Dark Glass 暗色主题时，亮背景从透明卡片直接透出，整页像被白雾覆盖。解决方案是在 `body::after` 加了一个 `--theme-overlay` 遮罩层，Dark Glass 下用 `rgba(23, 19, 16, 0.70)` 压暗背景。
+
+## 部署到 Cloudflare Pages
+
+部署过程出乎意料地顺利：
+
+1. 把项目 push 到 GitHub
+2. 在 Cloudflare Pages 面板连接仓库
+3. Framework preset 选 Astro，Build command `npm run build`，Output directory `dist`
+4. 绑定域名 rain-lab.com
+
+第一次部署大概 2 分钟就跑完了。之后每次 push 自动触发重新部署。
 
 ## 心得
 
-1. **设计方向比技术实现更重要**——技术方案很快能换，但设计基调一旦确立，会影响所有后续决策
-2. **CSS 变量 > Tailwind 类**——设计 token 用 CSS 变量，Tailwind 类用于布局和间距，两者互补
-3. **先做骨架再填充内容**——页面结构和导航先就位，内容可以慢慢写
+做个人网站这件事，技术本身不难，难的是**坚持做完**。中间好几次想放弃——设计不好看、移动端布局崩了、build 报了一屏幕红。但每次解决一个问题，网站就进步一步。
+
+现在回头看，那些卡住我的问题大部分都不是"技术太难"，而是"文档没看完"或者"概念没理解透"。静下来读文档，一步一步来，问题总能解决。
