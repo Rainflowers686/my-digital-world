@@ -1,12 +1,13 @@
 # Rain Lab
 
 *A personal site for projects, notes, learning, and experiments.*
+![Astro 6](https://img.shields.io/badge/Astro-6-BC52EE?logo=astro&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-Website-3178C6?logo=typescript&logoColor=white) ![Status](https://img.shields.io/badge/Status-Live%20Site-2F855A)
 
-
-[English](README.md) | [简体中文](README.zh-CN.md)
+**Website:** [rain-lab.com](https://rain-lab.com)
 
 **Guide:** [Status](#project-status) · [Work locally](#work-locally) · [Repository layout](#repository-layout)
 
+[English](README.md) | [简体中文](README.zh-CN.md)
 
 Rain Lab is a personal website for projects, notes, learning and experiments.
 
