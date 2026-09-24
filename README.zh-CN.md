@@ -1,12 +1,13 @@
 # Rain Lab
 
 *记录项目、笔记、学习和实验的个人网站。*
+![Astro 6](https://img.shields.io/badge/Astro-6-BC52EE?logo=astro&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-Website-3178C6?logo=typescript&logoColor=white) ![Status](https://img.shields.io/badge/Status-Live%20Site-2F855A)
 
-
-[English](README.md) | [简体中文](README.zh-CN.md)
+**网站：**[rain-lab.com](https://rain-lab.com)
 
 **导航：**[状态](#项目状态) · [本地运行](#本地运行) · [仓库结构](#仓库结构)
 
+[English](README.md) | [简体中文](README.zh-CN.md)
 
 Rain Lab 是个人网站，用来记录项目、笔记、学习和实验。
 
