@@ -1,6 +1,7 @@
 # Rain Lab
 
 *记录项目、笔记、学习和实验的个人网站。*
+
 ![Astro 6](https://img.shields.io/badge/Astro-6-BC52EE?logo=astro&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-Website-3178C6?logo=typescript&logoColor=white) ![Status](https://img.shields.io/badge/Status-Live%20Site-2F855A)
 
 **网站：**[rain-lab.com](https://rain-lab.com)
