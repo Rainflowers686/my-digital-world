@@ -1,6 +1,7 @@
 # Rain Lab
 
 *A personal site for projects, notes, learning, and experiments.*
+
 ![Astro 6](https://img.shields.io/badge/Astro-6-BC52EE?logo=astro&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-Website-3178C6?logo=typescript&logoColor=white) ![Status](https://img.shields.io/badge/Status-Live%20Site-2F855A)
 
 **Website:** [rain-lab.com](https://rain-lab.com)
